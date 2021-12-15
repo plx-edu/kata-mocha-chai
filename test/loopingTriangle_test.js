@@ -3,9 +3,9 @@ const assert = chai.assert;
 import{ makeTriangle } from "../01_LoopingTriangle/loopingTriangle.js";
 
 describe("makeTriangle()", function() {
-    describe("Array length", function(){
+    describe("Testing Array Length:", function(){
         function testLength(x, expected){
-            it(`Length test:\n\tmakeTriangle(${x}) return object.length should be ${expected}`, function(){
+            it(`makeTriangle(${x})\n\t:: obj.length should be ${expected}`, function(){
                 assert.lengthOf(makeTriangle(x), expected);
             });
         }
@@ -25,11 +25,11 @@ describe("makeTriangle()", function() {
         testLength(" 2a ", 0);
     });
 
-    describe("Return type", function(){
+    describe("Testing Return Type", function(){
 
         function testType(x){
-            it(`makeTriangle(${x}) return should be an object type`, function(){
-                assert.typeOf(makeTriangle(x), "object");
+            it(`makeTriangle(${x})\n\t:: return should be Array`, function(){
+                assert.typeOf(makeTriangle(x), 'Array');
             });
         }
     
