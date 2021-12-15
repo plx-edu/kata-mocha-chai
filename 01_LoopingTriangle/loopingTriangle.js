@@ -1,6 +1,7 @@
 
 export function makeTriangle(height, char = "#") {
-    console.log("Looping a Triangle:");
+    // console.log("Looping a Triangle:");
+    // console.log(height, "isNaN =", isNaN(height));
 
     let str = ""
     let triangle = [];
