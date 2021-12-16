@@ -3,6 +3,7 @@ const assert = chai.assert;
 import{ makeTriangle } from "../01_LoopingTriangle/loopingTriangle.js";
 
 describe("makeTriangle()", function() {
+
     describe("Testing Array Length:", function(){
         function testLength(x, expected){
             it(`makeTriangle(${x})\n\t:: obj.length should be ${expected}`, function(){
@@ -19,8 +20,8 @@ describe("makeTriangle()", function() {
         testLength("2", 2);
         testLength("-1", 0);
         testLength(NaN, 0);
-        testLength(NaN, 0);
-        testLength(" 4 ", 4);
+        testLength(undefined, 0);
+        testLength(null, 0);
         testLength(" a1 ", 0);
         testLength(" 2a ", 0);
     });
@@ -28,14 +29,76 @@ describe("makeTriangle()", function() {
     describe("Testing Return Type", function(){
 
         function testType(x){
-            it(`makeTriangle(${x})\n\t:: return should be Array`, function(){
-                assert.typeOf(makeTriangle(x), 'Array');
+            it(`makeTriangle(${x})\n\t:: is Array`, function(){
+                assert.isArray(makeTriangle(x));
             });
         }
     
         testType(12);
         testType(-1);
         testType("aB");
-        testType(NaN,);
+        testType(NaN); 
+        testType(null); 
+        testType(undefined); 
+    });
+
+    describe("Testing Output Values Type", function(){
+
+        // QUESTIONS: typeOf ou isString/isNotString ??
+        function testValueType(x, index, expected){
+            it(`makeTriangle(${x})\n\t:: at index(${index}) should be ${expected}`, function(){
+                assert.typeOf(makeTriangle(x)[index], expected);
+            });
+        }
+    
+        testValueType(12, 0, "string");
+        testValueType(10, 2, "string");
+        testValueType(25, 0, "string");
+        testValueType(11, 10, "string");
+        testValueType(-1, 0, "undefined");
+        testValueType("aB", 1, "undefined");
+        testValueType(NaN, 1, "undefined");
+        testValueType(NaN, 0, "undefined");
+        testValueType(5, 5, "undefined");
+        testValueType(5, NaN, "undefined");
+        testValueType(NaN, NaN, "undefined");
+    });
+
+    describe("Testing Output Values Length", function(){
+
+        function testValueLength(x, index, expected){
+
+            // When array cell is NOT out of bound -> if
+            if( x > 0 && index <= x && index >= 0){
+                it(`makeTriangle(${x})\n\t:: at index(${index}) should be ${expected}`, function(){
+                    assert.lengthOf(makeTriangle(x)[index], expected);
+                });
+            }else {
+                it(`makeTriangle(${x})\n\t:: index(${index}) does NOT exist`, function(){
+                    assert.notExists(makeTriangle(x)[index]);
+                });
+            }
+        }
+    
+        testValueLength(12, 0, 1);
+        testValueLength(10, -1);
+        testValueLength(1, 2);
+        testValueLength(0, 0);
+        // testValueType(NaN); 
+    });
+
+    describe("Testing Output Values", function(){
+
+        function testValue(x, index, expected){
+            it(`makeTriangle(${x})\n\t:: at index(${index}) should be ${expected}`, function(){
+                assert.strictEqual(makeTriangle(x)[index], expected);
+            });
+        }
+
+        // Update to use match() and regex
+        testValue(12, 0, "#");
+        testValue(12, 11, "############");
+        testValue(0, 0, undefined);
+        testValue(2, 5, undefined);
     });
 });
