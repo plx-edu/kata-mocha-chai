@@ -1,9 +1,10 @@
 {
     "type": "module",
     "scripts": {
-        "test": "mocha"
+        "test": "c8 mocha"
     },
     "dependencies": {
+        "c8": "^7.10.0",
         "chai": "^4.3.4"
     }
 }
