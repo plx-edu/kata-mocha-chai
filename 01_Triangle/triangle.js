@@ -1,5 +1,5 @@
 
-export function makeTriangle(height, char = "#") {
+export default function triangle(height, char = "#") {
     // console.log("Looping a Triangle:");
     // console.log(height, "isNaN =", isNaN(height));
 
@@ -14,4 +14,4 @@ export function makeTriangle(height, char = "#") {
     return triangle;
 }
 
-// for(const k of makeTriangle(10)) console.log(k);
+// for(const k of triangle(10)) console.log(k);
