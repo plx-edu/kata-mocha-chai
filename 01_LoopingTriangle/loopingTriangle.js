@@ -3,7 +3,7 @@ export function makeTriangle(height, char = "#") {
     // console.log("Looping a Triangle:");
     // console.log(height, "isNaN =", isNaN(height));
 
-    let str = ""
+    let str = "";
     let triangle = [];
 
     for(let i = 0; i < height; i++){
