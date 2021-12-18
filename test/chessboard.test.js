@@ -19,7 +19,7 @@ describe("chessboard(x):", () => {
             0: 0,
             1: 1,
             "4": 4
-        }
+        };
         
         test(undefined, 8);
 
