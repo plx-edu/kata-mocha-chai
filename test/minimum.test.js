@@ -6,52 +6,67 @@ describe("minimum(a, b):", () => {
 
     describe("Return type", () => {
         function test(a, b){
-            it(`min(${a}, ${b})\tshould return a Number (${min(a,b)})`, () => {
+            // it(`min(${a}, ${b})\tshould return a Number (${min(a,b)})`, () => {
+            it(`min(${a}, ${b})\tshould return a Number`, () => {
                 expect(min(a, b)).to.be.a('number');
             });
         }
-        
-        // a: b
-        let param = {
-            "-5": undefined,
-            null: 5,
-            4: -4,
-            "-1": "1",
-            NaN: null,
-            null: undefined,
-            "-15": [],
-            6715: ["z", "a"],
-            "A": ["a"],
-            "B": ["1", "5"],
-            "C": ["5"]
-        };
-        
-        test(undefined, 8);
 
-        for(const k in param){
-            test(k, param[k]);
+        let tabA = [undefined, null, NaN, -2, 0, , "5", "A", ["25"], [2,3], [], Object, true, false];
+        
+        test([], []);
+        for(const kA of tabA){ 
+            for(const kB of tabA){
+                test(kA, kB);
+            }
+
+            // Comment this line if needed
+            // if commented, will add more tests
+            tabA.shift();
         }
     });
 
+    describe("Return element (NaN)", () => {
+        function test(a, b){
+            it(`min(${a}, ${b})\tshould be NaN`, () => {
+                expect(min(a, b)).to.be.NaN;
+            });
+        }
+        
+        // [a, b]
+        let param = {
+            1: [undefined, "5"],
+            2: [1, "A"],
+            3: [null, undefined],
+            4: [NaN, NaN],
+        };
 
-    describe("Return element", () => {
+        for(const k in param){
+            test(param[k][0], param[k][1]);
+        }
+    });
+
+    describe("Return element (value)", () => {
         function test(a, b, expected){
             it(`min(${a}, ${b})\tshould return ${expected}`, () => {
                 expect(min(a, b)).to.equal(expected);
             });
         }
-        
-        // a: b
+
+        // [a, b, expected]
         let param = {
-            5: [undefined, "5"],
-            1: ["1", "5"],
+            1: [2, "5", 2],
+            2: [null, null, 0],
+            3: [null, -21, -21],
+            4: [-0.0009999, -0.001, -0.001],
+            6: [-0, 0, 0],
+            7: [[], 10, 0],
+            8: [true, false, 0],
+            8: [2, true, 1],
         };
-        
-        test(undefined, 8, 8);
 
         for(const k in param){
-            console.log("##### EQUAL",param[k][0], param[k][1], k);
-            test(param[k][0], param[k][1], +k);
+            test(param[k][0], param[k][1], param[k][2]);
         }
     });
 });
