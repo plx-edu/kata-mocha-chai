@@ -1,5 +1,4 @@
 export default function fizzBuzz(arr){
-    console.log("02 FizzBuzz");
     let result = [];
 
     for(const k of arr){
@@ -11,6 +10,5 @@ export default function fizzBuzz(arr){
         result.push(a);
     }
 
-    // console.log(result);
     return result.join(', ');
 }
