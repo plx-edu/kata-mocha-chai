@@ -1,63 +1,75 @@
 import chai from "chai";
 const expect = chai.expect;
-import chessboard from '../03_Chessboard/chessboard.js';
+import { chessboard, makeBoard } from '../03_Chessboard/chessboard.js';
 
-describe("chessboard(x):", () => {
+describe("chessboard(n):", () => {
 
-    describe('length:', () => {
-        function test(x, expected){
-            it(`x: ${x}\texpect: ${expected}`, () => {
-                expect(chessboard(x)).to.have.lengthOf(expected);
+    describe('main', () => {
+        it("should return a string", () => {
+            expect(chessboard()).to.be.a("string");
+        });
+
+        it("should accept numbers as arguments", () => {
+            expect(chessboard("string")).to.be.equal("");
+        });
+    });// main
+
+    describe('makeBoard', () => {
+        it("should return an array", () => {
+            expect(makeBoard()).to.be.an("array");
+        });
+        
+        it("should have default length of 8 if no argument is given", () => {
+            expect(makeBoard()).to.have.lengthOf(8);
+        });
+
+        it("should have length of n >= 0", () => {
+            expect(makeBoard(-1)).to.have.lengthOf(0);
+        });
+    });// makeBoard
+
+    describe('Test Cases:', () => {
+        function testLength(x, expected){
+            it(`[Lenght] x: ${x}\texpect: ${expected}`, () => {
+                expect(makeBoard(x)).to.have.lengthOf(expected);
             });
         }
-        
+
+        function testValue(x, i, expected){
+            it(`[Value] x: ${x}\tindex:${i}\texpect: ${expected}`, () => {
+                expect(makeBoard(x)[i]).to.equal(expected);
+            });
+        }
+
+        // Setup for length testing
         // x: expected
         let param = {
             null: 0,
             "": 0,
             "-2": 0,
-            0: 0,
             1: 1,
             "4": 4
         };
-        
-        test(undefined, 8);
 
         for(const k in param){
-            test(k, param[k]);
+            testLength(k, param[k]);
         }
-    });
 
-    describe('output type:', () => {
-        function test(x){
-            it(`x: ${x}\ttype: array`, () => {
-                expect(chessboard(x)).to.be.an('array');
-            });
-        }
-        
+        // Setup for value testing
+        // [x, i, expected]
+        param = {
+            1: [undefined, 0, "🁣🁢🁣🁢🁣🁢🁣🁢"],
+            2: [undefined, 7, "🁢🁣🁢🁣🁢🁣🁢🁣"],
+            3: [1, 0, "🁣"],
+            4: [1, -1, undefined],
+            5: [0, 1, undefined],
+            6: [4, 2, "🁣🁢🁣🁢"],
+        };
 
-        let param = [undefined, 0, -1, null, "", "str", 7];
-        
-        for(const k of param){
-            test(k);
+        for(const k in param){
+            testValue(param[k][0], param[k][1], param[k][2]);
         }
-    });
-
-    describe('index value', () => {
-        function test(x, i, expected){
-            it(`x: ${x}\tindex:${i}\texpect: ${expected}`, () => {
-                expect(chessboard(x)[i]).to.equal(expected);
-            });
-        }
-        
-        test(undefined, 0, "🁣🁢🁣🁢🁣🁢🁣🁢");
-        test(undefined, 7, "🁢🁣🁢🁣🁢🁣🁢🁣");
-        test(1, 0, "🁣");
-        test(1, -1, undefined);
-        test(1, 1, undefined);
-        test(0, 1, undefined);
-        test(4, 2, "🁣🁢🁣🁢");
-    });
+    });// Test cases
 });
 
 

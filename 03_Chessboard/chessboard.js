@@ -1,4 +1,11 @@
-export default function chessboard(size = 8) {
+export function chessboard(size = 8) {
+    if(isNaN(size)) return "";
+
+    // Returns a string for display
+    return makeBoard(size).join("\n");
+}
+
+export function makeBoard(size = 8) {
     let char = ["🁣", "🁢"];
     let result = [];
     

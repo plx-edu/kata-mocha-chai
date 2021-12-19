@@ -9,7 +9,7 @@ describe('recursion(x)', () => {
             expect(isEven()).to.be.a("boolean");
         })
 
-        it(`should only accept whole, and type, numbers`, () => {
+        it(`should only accept whole numbers (and type)`, () => {
             expect(isEven("8")).to.be.false;
         })
     });

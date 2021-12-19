@@ -4,13 +4,11 @@ import countChar from '../06_BeanCounting/beanCounting.js';
 
 describe("countChar(str, c)", () => {
 
-    describe("Creating the function", () => {
+    describe("main", () => {
         it(`should return a Number`, () => {
             expect(countChar()).to.be.a('number');
         });
-    });
 
-    describe("Counting parameter", () => {
         it(`should expect argument is a string or a number`, () => {
             expect(countChar("444", 4)).to.equal(3);
         });
@@ -18,7 +16,7 @@ describe("countChar(str, c)", () => {
         it(`should only count characters`, () => {
             expect(countChar("apple", "apple")).to.equal(0);
         });
-    });
+    });// main
 
     describe("Test Cases", () => {
         function testValue(a, b, expected){
@@ -43,7 +41,7 @@ describe("countChar(str, c)", () => {
         for(const k in arg){
             testValue(arg[k][0], arg[k][1], arg[k][2]);
         }
-    });
+    });// Test cases
 });
 
 
