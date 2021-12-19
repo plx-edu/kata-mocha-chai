@@ -1,12 +1,10 @@
 export function sumOfRange(start, end, step){
     
-    if(isNaN(start) || isNaN(end) || isNaN(step)){
+    if(isNaN(start) || isNaN(end)){
         return NaN;
     }
     
-    sum(range(start, end, step));
-    
-    return NaN;
+    return sum(range(start, end, step));
 }
 
 export function sum(arr){
@@ -14,14 +12,13 @@ export function sum(arr){
         return NaN;
     }
 
-    // console.log("###################", arr.length);
     let result = 0;
 
     for (let k of arr) {
+        if(isNaN(k) || typeof k === 'string') continue;
         result += k;
     }
 
-    // console.log("Sum result:", result);
     // return result;
     return result;
 }
@@ -35,18 +32,24 @@ export function range(start, end, step){
         step = 1;
     }else if(step === 0){
         step = Math.abs(start - end);
-    }else{
-        step = Math.abs(step);
+    }else if (step < 0 && start < end){
+        // ES6 has better new swap (check browser support)
+        // [a, b] = [b, a];
+        let tmp = start;
+        start = end;
+        end = tmp;
     }
+    step = Math.abs(step);
 
     let arr = [];
-    // console.log("start ", arr);
 
-    if(start < end){
+    if(start < end ){
+
         for(let i = start; i <= end; i += step){
             arr.push(i);
         }
     }else if(start > end){
+
         for(let i = start; i >= end; i -= step){
             arr.push(i);
         }
@@ -54,7 +57,5 @@ export function range(start, end, step){
         arr = [start];
     }
 
-    // console.log(`Range: ${start}, ${end} - Step: ${step}`);
-    // console.log(arr);
     return arr;
 }// range()
