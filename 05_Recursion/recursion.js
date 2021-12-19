@@ -1,7 +1,7 @@
 export default function isEven(x){
 
     // Should only accept a whole number 
-    if(isNaN(x) || typeof x !== "number" || x !== Math.trunc(x)) {
+    if(isNaN(x) ||  typeof x !== "number" || x !== Math.trunc(x)) {
         return false;
     }
 

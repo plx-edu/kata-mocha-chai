@@ -20,7 +20,7 @@ describe("countChar(str, c)", () => {
         });
     });
 
-    describe("Correct counting", () => {
+    describe("Test Cases", () => {
         function testValue(a, b, expected){
             it(`should equal ${expected} if countChar(${a}, ${b})`, () => {
                 expect(countChar(a, b)).to.equal(expected);
