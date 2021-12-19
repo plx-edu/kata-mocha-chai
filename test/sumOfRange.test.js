@@ -4,7 +4,7 @@ import { sumOfRange, sum, range} from '../07_SumOfRange/sumOfRange.js';
 
 describe("sumOfRange(start, end, step)", () => {
 
-    describe("The main function", () => {
+    describe("main", () => {
 
         it(`should expect arguments to be numbers`, () => {
             expect(sumOfRange(undefined, undefined, undefined)).to.be.a('number');
